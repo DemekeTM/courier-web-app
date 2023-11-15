@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Supper admin channel</title>
+	<link rel="icon" type="image/x-icon" href="/GooRap_CaseExecution/images/icons/favicon.png">
+	<style type="text/css">
+	body{
+	}
+	*{
+		box-sizing: border-box;
+		font-family: sans-serif;
+		color: #343434;
+	}
+	table{
+		border-collapse: collapse;
+	}
+	th{
+		width: 120px;
+		text-align: left;
+		background-color: #1A9CFF;
+		padding: 5px 0px 0px 5px;
+		position: sticky;
+		top: 0;
+	}
+	th input, th select{
+		width: 115px;
+		text-align: left;
+		border: none;
+		border-radius: 3px;
+		padding: 5px;
+	}
+	th p, th span{
+		color: white;
+	}
+	tr:nth-child(odd), select{
+		background-color: #f2f2f2;
+	}
+	td{
+		padding: 5px;
+	}
+	td select{
+		border: none; 
+		border-bottom: 1px solid #cbcbcb;
+	}
+	.dash_client_label a, .dash_client_label span{
+		color: white;
+	}
+
+	/*for mobile*/
+	@media only screen and (max-width:530.9px){
+		.dash_client_label{
+			display: block;
+			margin-right: 20px;
+			padding: 5px;
+			color: white;
+		}
+		.dash_client_label a{
+			display: none;
+		}
+		.dash_client_label span{
+			font-size: 1.25em;
+		}
+		#navIcon{
+    		width: 27px;
+    		margin-right: 7px;
+   	 		padding: 2px;
+   	 		border: 1px solid;
+	    	border-radius: 50%;
+		}
+		.navLabel{
+			display: flex;
+    		flex-flow: row wrap;
+		}
+		.left_bar_Body{
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: flex-start;
+			justify-content: center;
+			border-top: 1px solid #1A9CFF;
+			margin: 23px auto auto auto;
+		}
+		.admin_column_left{
+			display: none;
+		}
+		.dropdownContent{
+			min-width: 71%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			right:0;
+			background-color: white;
+			z-index: 2;
+    		display: block;
+ 		   	font-size: 1.0em;
+ 		   	margin: auto;
+ 		   	border-radius: 5px;
+		}
+		.admin_column_left > div{
+    		max-width: 85%;
+    		margin: 22px;
+   			padding-left: 7px;
+		}
+		.admin_column_left > div:hover{
+			padding: 7px;
+			box-shadow: 0px 1px 3px -1px #000000;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.admin_column_left a{
+			text-decoration: none;
+		}
+		.admin_register{
+			width: 5%
+			height:5%;
+			display: none;
+		}
+		.adminShow{
+			position: absolute;
+			top: 0;
+			z-index: 3;
+			max-width:100%;
+			height: 100%;
+			padding: 10px;
+			right: 0;
+			background-color: white;
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 7px;
+			box-shadow: 0px 1px 3px -1px #000000;
+		}
+		.admin_register > span{
+			margin: 0 29px;
+			padding: 12px 4%;
+			border-radius: 3px;
+		}
+		.admin_register button{
+			color: white; 
+			background-color: #1A9CFF; 
+			border: none; 
+			border-radius: 3px; 
+			padding: 6px 12px;
+			font-family: cursive;
+			font-size: 1.09em;
+		}
+		.mainBody{
+			width: 100%;
+			box-shadow: 0px 0px 9px -5px #1A9CFF;
+			padding: 7px 0 0 0;
+		}
+		.body_1{
+			width: 100%;
+			height: 386px;
+			overflow: auto;
+		}
+		.header_1{
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			align-items: center;
+			background-color: #1A9CFF;
+			box-shadow: 0px 0px 5px 0px #000000;
+			width: 100%;
+			height: 69px;
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			overflow: hidden;
+		}
+		.logo{
+			max-width: 55%;
+		}
+		.display{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-start;
+			align-items: center;
+			margin: 105px auto auto auto;
+		}
+		.display input{
+			width: 39px;
+			text-align: left;
+			padding: 3px;
+		}
+		.report{
+			display: flex;
+			flex-flow: column wrap;
+		}
+		.dashboard_items{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+
+	}
+
+	/* for tablet*/
+	@media only screen and (min-width:531px){
+		.dash_client_label{
+			display: none;
+		}
+		#navIcon{
+    		width: 27px;
+    		margin-right: 7px;
+   	 		padding: 2px;
+   	 		border: 1px solid;
+	    	border-radius: 50%;
+		}
+		.navLabel{
+			display: flex;
+			flex-direction: column;
+	    	align-items: center;
+    		justify-content: center;
+		}
+		.left_bar_Body{
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: flex-start;
+			justify-content: center;
+			border-top: 1px solid #1A9CFF;
+			margin: 23px auto auto auto;
+		}
+		.admin_column_left{
+    		display: flex;
+		    flex-flow: row wrap;
+		    align-items: center;
+ 		   	justify-content: center;
+ 		   	font-size: 1.0em;
+		}
+		.admin_column_left > div{
+			margin: 16px 4px;
+			padding-bottom: 5px;
+			text-decoration: underline;
+			text-align: center;
+			font-size: 0.90em;		
+		}
+		.admin_column_left > div:hover{
+			padding: 7px;
+			box-shadow: 0px 1px 2px -1px #000000;
+			border-radius: 5px;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		.admin_column_left a{
+			text-decoration: none;
+		}
+		.admin_register{
+			width: 5%
+			height:5%;
+			display: none;
+		}
+		.adminShow{
+			position: absolute;
+			top: 0;
+			z-index: 3;
+			max-width:100%;
+			height: 100%;
+			padding: 10px;
+			left: 0;
+			background-color: white;
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 5px;
+			box-shadow: 0px 1px 3px -1px #000000;
+		}
+		.admin_register > span{
+			margin: 0 29px;
+			padding: 12px 4%;
+			border-radius: 3px;
+		}
+		.admin_register button{
+			color: white; 
+			background-color: #1A9CFF; 
+			border: none; 
+			border-radius: 3px; 
+			padding: 6px 12px;
+			font-family: cursive;
+			font-size: 1.09em;
+		}
+
+		.mainBody{
+			width: 100%;
+			box-shadow: 0px 0px 9px -5px #1A9CFF;
+			padding: 7px 0 0 7px;
+		}
+		.body_1{
+			width: 100%;
+			height: 386px;
+			overflow: auto;
+		}
+		.header_1{
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			align-items: center;
+			background-color: #1A9CFF;
+			box-shadow: 0px 0px 5px 0px #000000;
+			width: 100%;
+			height: 85px;
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			overflow: hidden;
+		}
+		.logo{
+			width: auto;
+			height: 85px;
+		}
+		.dropdown{
+			display: none;
+		}
+		.display{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-start;
+			align-items: center;
+			margin: 105px auto auto auto;
+		}
+		.display input{
+			width: 51px;
+			text-align: left;
+			padding: 3px;
+		}
+		.report{
+			display: flex;
+			flex-flow: column wrap;
+		}
+		.dashboard_items{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+	}
+	/*for desktop*/
+	@media only screen and (min-width: 768px){
+		th{
+			width: 120px;
+			text-align: left;
+		}
+		th input, th select{
+			width: 115px;
+			text-align: left;
+			padding: 5px;
+		}
+		.dash_client_label{
+			display: block;
+		}
+		#navIcon{
+    		width: 27px;
+    		margin-right: 7px;
+   	 		padding: 2px;
+   	 		border: 1px solid;
+	    	border-radius: 50%;
+		}
+		.navLabel{
+			display: flex;
+    		flex-flow: row nowrap;
+    		align-items: flex-start;
+    		justify-content: left;
+		}
+		.left_bar_Body{
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: flex-start;
+			justify-content: center;
+			border-top: 1px solid #1A9CFF;
+			margin: 23px auto auto auto;
+		}
+		.admin_column_left{
+			width: 19%;
+			margin-top: 12px;
+		    display: flex;
+		    flex-flow: column nowrap;
+		    text-decoration: none;
+		    align-items: flex-start;
+		    justify-content: left;
+		    font-size: 1.15em;
+		}
+		.admin_column_left > div{
+			min-width: 63%;
+			margin: 10px;
+			padding: 0 7px;
+		    text-decoration: underline;
+		}
+		.admin_column_left > div:hover{
+			padding: 7px 8px;
+			box-shadow: 0px 1px 2px -1px #000000;
+			border-radius: 5px;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		.admin_register{
+			width: 5%
+			height:5%;
+			display: none;
+		}
+		.adminShow{
+			position: absolute;
+			top: 0;
+			z-index: 3;
+			max-width:100%;
+			height: 100%;
+			padding: 10px;
+			left: 0;
+			background-color: white;
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 5px;
+			box-shadow: 0px 1px 3px -1px #000000;
+		}
+		.admin_register > span{
+			margin: 0 29px;
+			padding: 12px 4%;
+			border-radius: 3px;
+		}
+		.admin_register button{
+			color: white; 
+			background-color: #1A9CFF; 
+			border: none; 
+			border-radius: 3px; 
+			padding: 6px 12px;
+			font-family: cursive;
+			font-size: 1.09em;
+		}
+		.mainBody{
+			width: 81%;
+			padding: 7px 0 0 7px;
+			box-shadow: 0px 0px 9px -5px #1A9CFF;
+		}
+		.body_1{
+			width: 100%;
+			height: 419px;
+			overflow: auto;
+		}
+	  }
+	 }
+	</style>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body onload="ordTable('','','')">
+	<!--Header starts here-->
+	<div class="mainHeader">	
+		<div class="header_1">
+			<div style="margin-left: 21px;">
+				<a href="#">
+					<img class="logo" src="/GooRap_CaseExecution/images/logo.png">
+				</a>
+			</div>
+			<div class="dash_client_label">
+				<span class="dropdown" onmouseover = "dropdown()">&#9776;</span>
+				<a style="margin-right: 21px;" href="#dashboard">Dashboard</a>
+				<a style="margin-right: 21px;" href="https://maflink.com/client.html">Client veiw</a>
+			</div>
+		</div>
+		<div class="display">
+			<span>
+				Display row&nbsp;
+			</span>
+			<div>
+				<span style="display: inline-block;">
+					<strong>from:&nbsp;</strong><input type="number">
+				</span>
+				<span style="display: inline-block;">
+					<strong>&nbsp;to:&nbsp;</strong><input type="number">
+				</span>
+				<button style="border: 1px solid #1A9CFF; border-radius: 3px; background-color: #1A9CFF; color: white; padding: 4px;">&#10095; GO</button>
+			</div>
+		</div>
+	</div>
+	<!--Header ends here-->
+	<div class="left_bar_Body">
+		<!--left column starts here-->
+		<div class="admin_column_left" onmouseover = "dropdown()" onmouseout="dropdownHide()">
+			<div class="navLabel">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/chartIcon.png"><a href="#dashboard">Dashboard</a>
+			</div>
+			<div class="navLabel">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/clientIcon.png"><a href="https://maflink.com/client.html">Client veiw</a>
+			</div>
+			<div class="navLabel" onmouseover="showAdminR()">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/adminIcon.png"><span>New admin</span>
+			</div>
+			<div class="navLabel">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/reportIcon.png"><span>Report&nbsp;</span>
+				<div style="display: none;">
+					<span style="margin: 10px; font-size: 0.75em;"> from:&nbsp;<input style="width: 35px;" type="date"></span>
+					<span style="margin: 10px; font-size: 0.75em;"> to:&nbsp;<input style="width: 35px;" type="date"></span>
+				</div>
+			</div>
+			<div class="navLabel">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/exportIcon.png"><span>Export</span>
+			</div>
+			<div class="navLabel">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/importIcon.png"><span>Import</span>
+				<input type="file" style="display: none;">
+			</div>
+			<div class="navLabel">
+				<img id="navIcon" src="/GooRap_CaseExecution/images/icons/msgIcon.png"><span>Send message</span>
+			</div>
+		</div>
+		<!--left column ends here-->
+		
+		<!--admin register starts here-->
+		<div class="admin_register" onmouseover="showAdminR()" onmouseout="hideAdminR()">
+			<span><strong style="color: #1A9CFF;">Sign in</strong></span>
+			<span><label>Email</label><br><input id="userName" type="text" name="userName" autofocus required></span>
+			<span><label>Enter password</label><br><input id="pass_1" type="password" name="password" required></span>
+			<span><label>Confirm password</label><br><input id="pass_2" type="password" name="password" required></span>
+			<span><button type="button">Submit</button></span>
+		</div>
+		<!--admin register ends here-->
+		
+		<!--main body starts here-->
+		<div class="mainBody">
+			<div class="body_1">
+				<table>
+					<tr><th><span>Filter&#8658;</span><p>No</p></th>
+					<th><input name="yName" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>First name</p></th>
+					<th><input name="fName" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Last name</p></th>
+					<th><input name="gfName" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Middle name</p></th>
+					<th><input name="email" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Email</p></th>
+					<th><input name="phoneNumber" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Phone number</p></th>
+					<th><input name="country" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Country</p></th>
+					<th><input name="state" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>State</p></th>
+					<th><input name="city" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>City</p></th>
+					<th><input name="st1" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Street 1</p></th>
+					<th><input name="st2" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Street 2</p></th>
+					<th><input name="postCode" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Post code</p></th>
+					<th><input name="caseType" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Order type</p></th>
+					<th><input name="issueBy" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Placed by</p></th>
+					<th><input name="orderDate" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Date</p></th>
+					<th><input name="orderID" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Tr no.</p></th>
+					<th><input name="additional" type="search" oninput="ordTable(this.name, this.value, '#1a9cffa6')"><p>Additional</p></th>
+					<th>
+						<select name="status" onchange="ordTable(this.name, this.value, '#1a9cffa6')">
+							<option value="">All</option>
+							<option>Submitted</option>
+							<option>Approved</option>
+							<option>Processing</option>
+							<option>Completed</option>
+						</select>
+						<p>Status</p>
+					</th></tr>
+				</table>
+			</div>
+		</div>
+		<!--main body ends here-->
+	</div>
+		<!--dashboard starts here-->
+		<div id="dashboard" class="dashboard" style="margin-top: 51px; border-top: 1px solid #bbbbbb;">
+			<h3>Graphical representation</h3>
+			<div class="dashboard_items">
+				<div id="statusRate" style="width: 100%; height: auto;  margin: 100px 10px;"></div>
+				<div id="ordRate" style="width: 100%; height: auto; margin: 100px 10px;"></div>
+				<div id="serviceQuality" style="width: 100%; height: 100%; margin: 100px 10px;"></div>
+			</div>
+		</div>
+		<!--dashboard ends here-->
+		<script type="text/javascript">
+			function dropdown(){
+				document.getElementsByClassName("admin_column_left")[0].classList.add("dropdownContent");
+			}
+			function dropdownHide(){
+				document.getElementsByClassName("admin_column_left")[0].classList.remove("dropdownContent");
+			}
+			
+			
+			function showAdminR(){
+				document.getElementsByClassName("admin_register")[0].classList.add("adminShow");
+			}
+			function hideAdminR(){
+				document.getElementsByClassName("admin_register")[0].classList.remove("adminShow");
+			}
+			
+        function ordTable(nameX, valueX, colorX){
+	        const objDisp = {"nameX":nameX, "valueX": valueX};
+	        const dispTXT = JSON.stringify(objDisp);
+	        
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+  	        let jData=this.responseText;
+  	        let data=JSON.parse(jData);
+            let objLength = Object.keys(data).length;
+            
+  	        let tableCont=document.getElementsByTagName("table")[0].getElementsByTagName("tr")[0].innerHTML;
+  	        document.getElementsByTagName("table")[0].innerHTML='<tr>'+tableCont+'</tr>';
+	        for(let y=(objLength-1); y>0; y--){
+	            let r = objLength-y;
+  	        	let yName=data[y][y]["yName"];
+  	        	let fName=data[y][y]["fName"];
+  	        	let gfName=data[y][y]["gfName"];
+  	        	let email=data[y][y]["email"];
+  	        	let phoneNumber=data[y][y]["phoneNumber"];
+  	        	let country=data[y][y]["country"];
+  	        	let state=data[y][y]["state"];
+  	        	let city=data[y][y]["city"];
+  	        	let st1=data[y][y]["st1"];
+  	        	let st2=data[y][y]["st2"];
+  	        	let postCode=data[y][y]["postCode"];
+  	        	let caseType=data[y][y]["caseType"];
+  	        	let issueBy=data[y][y]["issueBy"];
+  	        	let ordDate=data[y][y]["orderDate"];
+  	        	let ordID=data[y][y]["orderID"];
+  	        	let additional=data[y][y]["additional"];
+  	        	let status=data[y][y]["status"];
+  	        	
+	        	let row = "<td>"+r+"</td><td>"+yName+"</td><td>"+fName+"</td><td>"+gfName+"</td><td>"+email+"</td><td>"+phoneNumber+"</td><td>"+country+"</td><td>"+state+"</td><td>"+city+"</td><td>"+st1+"</td><td>"+st2+"</td><td>"+postCode+"</td><td>"+caseType+"</td><td>"+issueBy+"</td><td>"+ordDate+"</td><td>"+ordID+"</td><td>"+additional+"</td><td><select><option>"+status+"</option><option>Approved</option><option>Processing</option><option>Completed</option></select></td>";
+	        	document.getElementsByTagName("table")[0].appendChild(document.createElement("tr"));
+	        	document.getElementsByTagName("table")[0].getElementsByTagName("tr")[r].innerHTML=row;
+	        	document.getElementsByTagName("table")[0].getElementsByTagName("tr")[r].getElementsByTagName("td")[0].style.backgroundColor=colorX;
+	        	
+	        	}
+        	}
+         xhttp.open("GET", "https://maflink.com/GooRap_CaseExecution/ordDisp.php?q="+dispTXT);
+         xhttp.send();
+        }
+        
+    function limitRow(){
+	        const objLimit = [];
+	        let startX=10;
+	        let endX=15;
+	        
+	        objLimit["limitX"]=(endX-startX)+1;
+	        objLimit["offsetX"]=endX-(objLimit["limitX"]);
+	        const limitedRow = JSON.stringify(objLimit);
+	        
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+  	        let jData=this.responseText;
+  	        let data=JSON.parse(jData);
+            let objLength = Object.keys(data).length;
+            
+	        for(let y=(objLength-1); y>0; y--){
+	            let r = objLength-y;
+  	        	let yName=data[y][y]["yName"];
+  	        	let fName=data[y][y]["fName"];
+  	        	let gfName=data[y][y]["gfName"];
+  	        	let email=data[y][y]["email"];
+  	        	let phoneNumber=data[y][y]["phoneNumber"];
+  	        	let country=data[y][y]["country"];
+  	        	let state=data[y][y]["state"];
+  	        	let city=data[y][y]["city"];
+  	        	let st1=data[y][y]["st1"];
+  	        	let st2=data[y][y]["st2"];
+  	        	let postCode=data[y][y]["postCode"];
+  	        	let caseType=data[y][y]["caseType"];
+  	        	let issueBy=data[y][y]["issueBy"];
+  	        	let ordDate=data[y][y]["orderDate"];
+  	        	let ordID=data[y][y]["orderID"];
+  	        	let additional=data[y][y]["additional"];
+  	        	let status=data[y][y]["status"];
+        
+	        	let row = "<td>"+r+"</td><td>"+yName+"</td><td>"+fName+"</td><td>"+gfName+"</td><td>"+email+"</td><td>"+phoneNumber+"</td><td>"+country+"</td><td>"+state+"</td><td>"+city+"</td><td>"+st1+"</td><td>"+st2+"</td><td>"+postCode+"</td><td>"+caseType+"</td><td>"+issueBy+"</td><td>"+ordDate+"</td><td>"+ordID+"</td><td>"+additional+"</td><td><select><option>"+status+"</option><option>Approved</option><option>Processing</option><option>Completed</option></select></td>";
+	        	document.getElementsByTagName("table")[0].appendChild(document.createElement("tr"));
+	        	document.getElementsByTagName("table")[0].getElementsByTagName("tr")[r].innerHTML=row;
+	        	document.getElementsByTagName("table")[0].getElementsByTagName("tr")[r].getElementsByTagName("td")[0].style.backgroundColor=colorX;
+	        	
+	        	}
+        	}
+         xhttp.open("GET", "https://maflink.com/GooRap_CaseExecution/ordDisp.php?q="+limitedRow);
+         xhttp.send();
+        }
+        
+        
+        
+	//Graphd start here
+const xArray3 = ["Submitted", "Approved", "Intiated", "Processing", "Completed"];
+const yArray3 = [55, 49, 44, 24, 15];
+
+const layout3 = {title:"Orders status"};
+
+const data3 = [{labels:xArray3, values:yArray3, hole:.4, type:"pie"}];
+
+Plotly.newPlot("statusRate", data3, layout3);
+
+		const xArrayX = [50,60,70,80,90,100,110,120,130,140,150];
+		const yArrayY = [7,8,8,9,9,9,10,11,14,14,15];
+
+		// Define Data
+		const dataX = [{
+  			x: xArrayX,
+  			y: yArrayY,
+  			mode:"lines"
+			}];
+
+		// Define Layout
+		const layoutX = {
+  		xaxis: {range: [40, 160], title: " Time in days"},
+  		yaxis: {range: [5, 16], title: "No. of orders"},  
+  		title: "Orders vs. Time"
+		};
+
+		// Display using Plotly
+		Plotly.newPlot("ordRate", dataX, layoutX);
+
+
+
+
+		const xArrayXX = [50,60,70,80,90,100,110,120,130,140,150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260];
+		const yArrayYY = [7,8,8,9,9,9,10,11,14,14,15,19,18,20,17,22,23,27,23,23,24,25];
+
+		// Define Data
+		const dataXX = [{
+  			x: xArrayXX,
+  			y: yArrayYY,
+  			mode:"lines"
+			}];
+
+		// Define Layout
+		const layoutXX = {
+  		xaxis: {range: [40, 270], title: " No. of clients"},
+  		yaxis: {range: [5, 45], title: "Total rates"},  
+  		title: "Service quality and client satisfication"
+		};
+
+		// Display using Plotly
+		Plotly.newPlot("serviceQuality", dataXX, layoutXX);
+	//graphs end here
+	</script>
+</body>
+</html>
