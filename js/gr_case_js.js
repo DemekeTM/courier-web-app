@@ -162,7 +162,7 @@ function caseConfirmation(){
 		}
 	}
 
-	xhttp.open("GET", "https://maflink.com/courier/newOrd.php?q="+csObj);
+	xhttp.open("GET", "https://maflink.com/backend/newOrd.php?q="+csObj);
 	xhttp.send();
 	document.getElementsByClassName("check_back")[0].disabled=true;
     document.getElementsByClassName("check_continue")[0].disabled=true;
@@ -200,7 +200,7 @@ function completeOrder(){
 		}
 	}
 
-	xhttp.open("GET", "https://maflink.com/courier/confirmOTP.php?q="+otpObj);
+	xhttp.open("GET", "https://maflink.com/backend/confirmOTP.php?q="+otpObj);
 	xhttp.send();
 	}
 	else{
@@ -232,7 +232,7 @@ function addContent(){
 		document.getElementsByClassName("addNew")[0].getElementsByTagName("h4")[0].style.boxShadow="none";
 		}
 	}
-	xhttp.open("GET", "https://maflink.com/courier/addContent.php?q="+addCont);
+	xhttp.open("GET", "https://maflink.com/backend/addContent.php?q="+addCont);
 	xhttp.send();
 }
 //adding new content ends here
@@ -260,7 +260,7 @@ function updateContent(updateVal){
 		}
 	}
 
-	xhttp.open("GET", "https://maflink.com/courier/contUpdate.php?q="+newCont, true);
+	xhttp.open("GET", "https://maflink.com/backend/contUpdate.php?q="+newCont, true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.send();
 }
@@ -308,7 +308,7 @@ let delCont = {
 		}
 	}
 
-	xhttp.open("GET", "https://maflink.com/courier/contDelete.php?q="+del, true);
+	xhttp.open("GET", "https://maflink.com/backend/contDelete.php?q="+del, true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.send();
 }
@@ -328,7 +328,7 @@ function recoverContent(updateVal){
 		}
 	}
 
-	xhttp.open("GET", "https://maflink.com/courier/recoverContent.php",true);
+	xhttp.open("GET", "https://maflink.com/backend/recoverContent.php",true);
 	xhttp.send();
 }
 //recovering content ends here
@@ -379,7 +379,7 @@ function buildContent(){
         }
 	 }
   }
-  xhttp.open("GET", "https://maflink.com/courier/caseContent.php");
+  xhttp.open("GET", "https://maflink.com/backend/caseContent.php");
   xhttp.send();
 }
 buildContent();
@@ -461,7 +461,7 @@ function rateLoader(){
 		   document.getElementsByClassName("rate_body")[j].getElementsByClassName("comment")[0].innerHTML=comment;	
 	   }
 }
-xhttp.open("GET", "https://maflink.com/courier/rateBuild.php");
+xhttp.open("GET", "https://maflink.com/backend/rateBuild.php");
 xhttp.send();
 }
 setTimeout(rateLoader,1000);
@@ -528,7 +528,7 @@ document.getElementById("rate_button").addEventListener("click",myRate);
 	   		}
 		}
 
-	    xhttp.open("GET", "https://maflink.com/courier/rateNew.php?q="+rateIn);
+	    xhttp.open("GET", "https://maflink.com/backend/rateNew.php?q="+rateIn);
     	xhttp.send();
 		}
 		else{
